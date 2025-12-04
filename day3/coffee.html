@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee House - Fresh Brewed Coffee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --coffee-dark: #3e2723;
+            --coffee-medium: #5d4037;
+            --coffee-light: #8d6e63;
+            --cream: #f5deb3;
+            --espresso: #2c1810;
+            --latte: #d4a574;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--coffee-medium) 100%) !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--cream) !important;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.1) rotate(-5deg);
+            color: var(--latte) !important;
+        }
+
+        .nav-link {
+            color: var(--cream) !important;
+            margin: 0 10px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--latte);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-link:hover {
+            color: var(--latte) !important;
+        }
+
+        /* Hero Section */
+        #home {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--latte) 100%);
+            animation: gradientShift 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #home h1 {
+            animation: fadeInDown 1s ease;
+        }
+
+        #home p {
+            animation: fadeInUp 1.2s ease;
+        }
+
+        #home button {
+            animation: fadeInUp 1.4s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--coffee-medium), var(--coffee-dark));
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(62, 39, 35, 0.4);
+            background: linear-gradient(135deg, var(--coffee-dark), var(--espresso));
+        }
+
+        /* Card Styles */
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInScale 0.6s ease;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 15px 35px rgba(62, 39, 35, 0.3);
+        }
+
+        .card img {
+            transition: transform 0.5s ease, filter 0.5s ease;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card:hover img {
+            transform: scale(1.2) rotate(-2deg);
+            filter: brightness(1.1);
+        }
+
+        .card-body {
+            background: linear-gradient(to bottom, #fff, var(--cream));
+            transition: background 0.3s ease;
+        }
+
+        .card:hover .card-body {
+            background: linear-gradient(to bottom, var(--cream), var(--latte));
+        }
+
+        .card-title {
+            color: var(--coffee-dark);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .card-title {
+            color: var(--espresso);
+        }
+
+        .fw-bold {
+            color: var(--coffee-medium);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .fw-bold {
+            color: var(--espresso);
+            transform: scale(1.1);
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+        }
+
+        #about img {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        #about img:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 15px 40px rgba(62, 39, 35, 0.4);
+        }
+
+        /* Contact Form */
+        .form-control {
+            border: 2px solid var(--coffee-light);
+            border-radius: 10px;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--coffee-dark);
+            box-shadow: 0 0 15px rgba(62, 39, 35, 0.3);
+            transform: scale(1.02);
+        }
+
+        .form-label {
+            color: var(--coffee-dark);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--espresso), var(--coffee-dark)) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '☕';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.05;
+            right: -50px;
+            bottom: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Section Headings */
+        h2 {
+            color: var(--coffee-dark);
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+            animation: slideIn 0.8s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--coffee-medium), var(--latte));
+            bottom: -10px;
+            left: 20%;
+            border-radius: 5px;
+        }
+
+        /* Menu Section */
+        #menu {
+            background: linear-gradient(to bottom, #fff, var(--cream));
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Display Flex for About Section */
+        #about .row {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">☕ Coffee House</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-light py-5">
+        <div class="container text-center">
+            <h1 class="display-4">Welcome to Coffee House</h1>
+            <p class="lead">Freshly brewed coffee every day</p>
+            <button class="btn btn-primary btn-lg">Order Now</button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Menu</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" class="card-img-top" alt="Coffee">
+                        <div class="card-body">
+                            <h5 class="card-title">Espresso</h5>
+                            <p class="card-text">Strong and bold espresso shot</p>
+                            <p class="fw-bold">$3.50</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80" class="card-img-top" alt="Latte">
+                        <div class="card-body">
+                            <h5 class="card-title">Latte</h5>
+                            <p class="card-text">Smooth espresso with steamed milk</p>
+                            <p class="fw-bold">$4.50</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&q=80" class="card-img-top" alt="Cappuccino">
+                        <div class="card-body">
+                            <h5 class="card-title">Cappuccino</h5>
+                            <p class="card-text">Espresso with foam and milk</p>
+                            <p class="fw-bold">$4.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>About Us</h2>
+                    <p>We are passionate about serving the best coffee in town. Our beans are sourced from the finest farms around the world and roasted fresh daily.</p>
+                    <p>Visit us today and experience the difference!</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" class="img-fluid rounded" alt="Coffee Shop">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="your@email.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="4" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 Coffee House. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
